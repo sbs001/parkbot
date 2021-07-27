@@ -1,6 +1,6 @@
 # Parkbot :robot:
 
-In this application you can get parking spaces according to location and hourly price.
+In this application you can get parking spots according to location and hourly price.
 
 ## Enviroment
 
