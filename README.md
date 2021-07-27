@@ -53,4 +53,8 @@ Church of 8 Wheels, Tempe Beach Park, AirGarage HQ, Safeway, Walgreens, Goldiloc
 $ python3 parkbot airgarage-data.json find_price_hourly_gt 200
 Sweetgreen, Sandwiches n More, Azusa Ramen
 ```
-	
+
+### DEMO
+
+![Peek 27-07-2021 11-57](https://user-images.githubusercontent.com/50562395/127177801-634e248e-bc16-4c42-b258-685e034338a7.gif)
+
