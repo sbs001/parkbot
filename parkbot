@@ -20,8 +20,8 @@ with open('airgarage-data.json') as file:
 args = sys.argv
 
 if (len(args) < 4):
-   print('Please, insert valid arguments')
+   sys.stdout.write('Please, insert valid arguments' + '\n')
 elif (args[1] != 'airgarage-data.json'):
-   print('File', args[1], 'not found. Please, try again')
+   sys.stdout.write('File', args[1], 'not found. Please, try again'  + '\n')
 else:
-   print(find(args,data))
+   sys.stdout.write(find(args,data)  + '\n')
