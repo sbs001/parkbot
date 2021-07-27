@@ -1,21 +1,18 @@
-import sys,json 
+import sys, json
 
-def find(command, argument, data):
-   results = [slot['name'] for slot in data if ((command == 'locate' and slot['address']['state'] == argument) or
-                                                (command == 'find_price_hourly_lte' and slot['price_hourly'] <= int(argument)) or
-                                                (command == 'find_price_hourly_gt' and slot['price_hourly'] > int(argument)))]
+PARKING_SPOTS_DATA = 'airgarage-data.json'
 
-   return (', '.join(results))
+def findParkingSpots(command, argument):
+   parkingSpots = json.load(open(PARKING_SPOTS_DATA))   
 
+   return (', '.join([spot['name'] for spot in parkingSpots 
+         if ((command == 'locate' and spot['address']['state'] == argument) or
+            (command == 'find_price_hourly_lte' and spot['price_hourly'] <= int(argument)) or
+            (command == 'find_price_hourly_gt' and spot['price_hourly'] > int(argument)))]))
 
-with open('airgarage-data.json') as file:
-   data = json.load(file)
+inputs = sys.argv
 
-args = sys.argv
-
-if (len(args) < 4):
-   sys.stdout.write('Please, insert valid arguments' + '\n')
-elif (args[1] != 'airgarage-data.json'):
-   sys.stdout.write('File', args[1], 'not found. Please, try again' + '\n')
+if (len(inputs) < 4 or inputs[1] != PARKING_SPOTS_DATA):
+   sys.stdout.write('Invalid arguments. Please, try again' + '\n')
 else:
-   sys.stdout.write(find(args[2], args[3], data) + '\n')
+   sys.stdout.write(findParkingSpots(inputs[2], inputs[3]) + '\n')
