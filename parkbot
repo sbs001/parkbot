@@ -1,17 +1,11 @@
-import sys
-import json
+import sys,json 
 
-
-def find(args,data):
-   results = []
-   for slot in data:
-      if((args[2] == 'locate' and slot['address']['state'] == args[3]) or
-         (args[2] == 'find_price_hourly_lte' and slot['price_hourly'] <= int(args[3])) or
-         (args[2] == 'find_price_hourly_gt' and slot['price_hourly'] > int(args[3]))):
-         results.append(slot['name'])
+def find(command, argument, data):
+   results = [slot['name'] for slot in data if ((command == 'locate' and slot['address']['state'] == argument) or
+                                                (command == 'find_price_hourly_lte' and slot['price_hourly'] <= int(argument)) or
+                                                (command == 'find_price_hourly_gt' and slot['price_hourly'] > int(argument)))]
 
    return (', '.join(results))
-
 
 
 with open('airgarage-data.json') as file:
@@ -22,6 +16,6 @@ args = sys.argv
 if (len(args) < 4):
    sys.stdout.write('Please, insert valid arguments' + '\n')
 elif (args[1] != 'airgarage-data.json'):
-   sys.stdout.write('File', args[1], 'not found. Please, try again'  + '\n')
+   sys.stdout.write('File', args[1], 'not found. Please, try again' + '\n')
 else:
-   sys.stdout.write(find(args,data)  + '\n')
+   sys.stdout.write(find(args[2], args[3], data) + '\n')
